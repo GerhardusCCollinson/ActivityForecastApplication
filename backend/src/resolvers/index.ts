@@ -1,4 +1,4 @@
-import type { CityDetails } from "../types/internal/CityDetails";
+import type { CityDetails } from "../types";
 
 export const resolvers = {
 	Query: {
