@@ -5,7 +5,7 @@ export const resolvers = {
 		cityDetails: (cityName: string): CityDetails[] => {
 			return [{
 				elevation: 0,
-				lattitude: 0,
+				latitude: 0,
 				longitude: 0,
 				name: 'City',
 			}]

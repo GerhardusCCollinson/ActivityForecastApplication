@@ -1,6 +1,6 @@
 export interface CityDetails {
 	name: string
 	longitude: number
-	lattitude: number
+	latitude: number
 	elevation: number
 };

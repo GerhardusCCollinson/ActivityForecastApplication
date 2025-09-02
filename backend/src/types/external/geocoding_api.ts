@@ -1,9 +1,9 @@
-export interface GeocodingApi_SearchResults {
-  results: GeocodingApi_Geoname[];
-  generationtimeMs: number;
+export interface GeocodingApiSearchResults {
+  results?: GeocodingApiGeoname[];
+  generationtime_ms: number;
 }
 
-export interface GeocodingApi_Geoname {
+export interface GeocodingApiGeoname {
   id: number;
   name: string;
   latitude: number;
