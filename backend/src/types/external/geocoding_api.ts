@@ -1,4 +1,4 @@
-export interface GeocodingApiSearchResults {
+export interface GeocodingApiSearchResponse {
   results?: GeocodingApiGeoname[];
   generationtime_ms: number;
 }
