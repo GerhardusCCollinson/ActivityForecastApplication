@@ -20,8 +20,16 @@ export class CitiesService {
 
 	private formatApiResponse(apiResponse: GeocodingApiSearchResults): CityDetails[] {
 		return apiResponse.results?.map(result => {
-			const { name, longitude, latitude, elevation } = result;
-			return { name, longitude, latitude, elevation }
+			const {
+				name,
+				longitude,
+				latitude,
+				elevation,
+				population,
+				country,
+				country_code: countryCode,
+			} = result;
+			return { name, longitude, latitude, elevation, population, country, countryCode }
 		}) ?? [];
 	}
 }

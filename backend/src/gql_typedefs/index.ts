@@ -6,6 +6,6 @@ export const typeDefs = gql`
 	${CityDetails}
 
 	type Query {
-		cityDetails(cityName: String): [CityDetails]
+		cityDetails(cityName: String!): [CityDetails]
 	}
 `
