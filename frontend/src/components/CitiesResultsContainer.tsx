@@ -7,8 +7,9 @@ export function CitiesResultsContainer(props: {
   error?: Error
   results: CityDetails[]
   onSelectCity?: (city: CityDetails) => void
+  selected?: { latitude: number, longitude: number }
 }) {
-  const { query, hasSearched, loading, error, results, onSelectCity } = props
+  const { query, hasSearched, loading, error, results, onSelectCity, selected } = props
 
   if (!hasSearched) {
     return <div>Search for a city to get started</div>
@@ -26,7 +27,14 @@ export function CitiesResultsContainer(props: {
   return (
     <ul className="city-results-list">
       {results.map((city) => (
-        <li className="city-results-item" key={`${city.name}-${city.countryCode}-${city.latitude}-${city.longitude}`}>
+        <li className={
+            `city-results-item${
+                selected &&
+                selected.latitude === city.latitude &&
+                selected.longitude === city.longitude ?
+                ' is-selected' : ''
+                }`
+            } key={`${city.name}-${city.countryCode}-${city.latitude}-${city.longitude}`}>
           <button
             className="city-results-button"
             onClick={() => onSelectCity?.(city)}
