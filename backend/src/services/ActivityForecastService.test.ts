@@ -8,11 +8,9 @@ describe('ActivityForecastService', () => {
 	const activityForecastService = new ActivityForecastService();
 
 	let coastalCity: CityDetails;
-	let inlandCity: CityDetails;
 
 	beforeAll(async () => {
 		coastalCity = (await citiesService.getCitiesByName('Cape Town'))[0]!;
-		inlandCity = (await citiesService.getCitiesByName('Pretoria'))[0]!;
 	});
 
 	it('should retrieve activity data for coastal city', async () => {
