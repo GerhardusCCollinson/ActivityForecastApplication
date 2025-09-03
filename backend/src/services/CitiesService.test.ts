@@ -1,4 +1,4 @@
-import { CitiesService } from './citiesSerivce';
+import { CitiesService } from './CitiesSerivce';
 
 describe('CitiesService', () => {
 	const citiesService = new CitiesService();

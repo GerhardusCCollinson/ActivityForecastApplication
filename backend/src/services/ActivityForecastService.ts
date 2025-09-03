@@ -5,8 +5,8 @@ import type {
 	MarineForecast,
 	WeatherForecast
 } from "../types";
-import { MarineForecastService } from "./marineForecastService";
-import { WeatherForecastService } from "./weatherForecastService";
+import { MarineForecastService } from "./MarineForecastService";
+import { WeatherForecastService } from "./WeatherForecastService";
 
 export class ActivityForecastService {
 	private weatherForecastService: WeatherForecastService;

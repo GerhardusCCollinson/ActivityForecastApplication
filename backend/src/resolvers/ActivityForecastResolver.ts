@@ -1,7 +1,7 @@
-import { ActivityForecastService } from "../services/activityForecastService";
+import { ActivityForecastService } from "../services/ActivityForecastService";
 import type { ActivityForecast } from "../types";
 
-export async function activityForecastResolver (
+export async function ActivityForecastResolver (
 	_parent: unknown,
 	args: ActivityForecastArgs
 ): Promise<ActivityForecast> {

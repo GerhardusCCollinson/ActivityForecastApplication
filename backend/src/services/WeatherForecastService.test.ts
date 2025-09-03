@@ -1,6 +1,6 @@
 import { WEATHER_PROPERTIES, type CityDetails } from "../types";
-import { CitiesService } from "./citiesSerivce";
-import { WeatherForecastService } from "./weatherForecastService";
+import { CitiesService } from "./CitiesSerivce";
+import { WeatherForecastService } from "./WeatherForecastService";
 
 describe('WeatherForecastService', () => {
 	const weatherForecastService = new WeatherForecastService();

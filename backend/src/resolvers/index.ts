@@ -1,9 +1,9 @@
-import { activityForecastResolver } from "./activityForecastResolver";
-import { cityDetailsResolver } from "./cityDetailsResolver";
+import { ActivityForecastResolver } from "./ActivityForecastResolver";
+import { CityDetailsResolver } from "./CityDetailsResolver";
 
 export const resolvers = {
 	Query: {
-		cityDetails: cityDetailsResolver,
-		activityForecast: activityForecastResolver,
+		cityDetails: CityDetailsResolver,
+		activityForecast: ActivityForecastResolver,
 	}
 }
