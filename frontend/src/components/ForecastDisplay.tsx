@@ -21,32 +21,45 @@ export function ForecastDisplay(props: { coords?: { latitude: number, longitude:
   const daily = data.activityForecast.daily
   const units = data.activityForecast.dailyUnits
 
+  const LABELS: Record<string, string> = {
+    ski: 'Ski',
+    surf: 'Surf',
+    outdoorSightseeing: 'Outdoor',
+    indoorSightseeing: 'Indoor',
+  }
 
   return (
     <div className="forecast">
       <div className="forecast-grid">
         {daily.time.map((iso, idx) => {
-            const sortedDailyActivityRankings = Object.entries(
-                daily.activityRankings[idx]).sort((a, b) => b[1].score - a[1].score
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            ).filter(([name, _]) => name !== '__typename')
+          const sortedActivityRankings = Object.entries(daily.activityRankings[idx])
+            .filter(([name]) => name !== '__typename')
+            .sort((a, b) => (b[1].score - a[1].score))
 
-            return (
-                <div className="forecast-card" key={iso}>
-                    <div className="forecast-date">{daily.weatherCode[idx]}{new Date(iso).toLocaleDateString()}</div>
-                    <div className="forecast-row"><span>Temp:</span> <strong>{daily.temperature[idx]}{units.temperature}</strong></div>
-                    <div className="forecast-row"><span>Wind:</span> <strong>{daily.windSpeedMax[idx]}{units.windSpeedMax}</strong></div>
-                    <div className="forecast-row"><span>Precip:</span> <strong>{daily.precipitation[idx]}{units.precipitation}</strong></div>
-                    <div className="forecast-activities">
-                        {sortedDailyActivityRankings.map(([ activityName, activity ]) => (
-                            <div className="activity"><span><span>{activityName}</span><span>{activity.reason}</span><strong>{activity.score?.toFixed(0)}</strong></span></div>
-                        ))}
+          return (
+            <div className="forecast-card" key={iso}>
+              <div className="forecast-date">{new Date(iso).toLocaleDateString()}</div>
+              <div className="forecast-row"><span>Temp:</span> <strong>{daily.temperature[idx]}{units.temperature}</strong></div>
+              <div className="forecast-row"><span>Wind:</span> <strong>{daily.windSpeedMax[idx]}{units.windSpeedMax}</strong></div>
+              <div className="forecast-row"><span>Precip:</span> <strong>{daily.precipitation[idx]}{units.precipitation}</strong></div>
+              <div className="forecast-activities">
+                {sortedActivityRankings.map(([name, activityRanking]) => {
+                  const score = Math.round(activityRanking.score)
+                  const tier = !activityRanking.isPossible ? 'na' : score >= 7 ? 'good' : score >= 4 ? 'ok' : 'bad'
+                  return (
+                    <div className={`activity-card ${tier}`} key={name}>
+                      <div className="activity-header">
+                        <span className="activity-name">{LABELS[name] ?? name}</span>
+                        <span className={`score score-${tier}`}>{activityRanking.isPossible ? score : '—'}</span>
+                      </div>
+                      <div className="activity-reason">{activityRanking.reason}</div>
                     </div>
-                </div>
-
-            );
-        }
-        )}
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })}
       </div>
     </div>
   )

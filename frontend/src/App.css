@@ -116,8 +116,16 @@ body {
 }
 .forecast-date { font-weight: 600; }
 .forecast-row { display: flex; justify-content: space-between; color: #334155; }
-.forecast-activities { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-1); margin-top: var(--space-2); }
-.activity { display: flex; flex-direction: column; align-items: center; border: 1px solid var(--border); border-radius: var(--radius-1); padding: var(--space-1); }
+.forecast-activities { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); margin-top: var(--space-2); }
+.activity-card { border: 1px solid var(--border); border-radius: var(--radius-1); padding: var(--space-2); background: var(--surface); display: grid; gap: var(--space-1); }
+.activity-header { display: flex; align-items: center; justify-content: space-between; }
+.activity-name { font-weight: 600; }
+.activity-reason { color: var(--text-weak); font-size: 12px; }
+.score { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 24px; border-radius: var(--radius-1); font-weight: 700; }
+.score-good { background: #dcfce7; color: #14532d; }
+.score-ok { background: #fef9c3; color: #854d0e; }
+.score-bad { background: #fee2e2; color: #7f1d1d; }
+.score-na { background: #e2e8f0; color: #475569; }
 
 .city-results-button {
   display: grid;
