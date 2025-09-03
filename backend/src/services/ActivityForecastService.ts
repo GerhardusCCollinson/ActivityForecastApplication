@@ -67,8 +67,8 @@ export class ActivityForecastService {
 				waveHeightMax: marineForecst.daily.waveHeightMax[index] ?? 0,
 			}
 			return {
-				indoorActivities: this.computeIndoorActivityScore(),
-				outdoorActivities: this.computeOutdoorActivityScore(relevantConditions),
+				indoorSightseeing: this.computeIndoorSightseeingScore(),
+				outdoorSightseeing: this.computeOutdoorSightseeingScore(relevantConditions),
 				ski: this.computeSkiScore(relevantConditions),
 				surf: this.computeSurfScore(relevantConditions),
 			}
@@ -212,7 +212,7 @@ export class ActivityForecastService {
 		}
 	}
 
-	private computeOutdoorActivityScore(conditions: RelevantConditions): ActivityRanking {
+	private computeOutdoorSightseeingScore(conditions: RelevantConditions): ActivityRanking {
 		const {
 			rain,
 			temperature,
@@ -239,7 +239,7 @@ export class ActivityForecastService {
 			return { score: 0, isPossible: false, reason: `Skies not clear (${weatherCode}); avoid outdoor sightseeing` }
 		}
 		
-		// Assign a score to outdoor activities based on temp and wind speed
+		// Assign a score to outdoor sightseeing based on temp and wind speed
 		let score = 0;
 		
 		// Assign a score based on temperature
@@ -282,18 +282,18 @@ export class ActivityForecastService {
 		return {
 			isPossible: true,
 			score,
-			reason: 'Conditions suitable for outdoor activities',
+			reason: 'Conditions suitable for outdoor sightseeing',
 		}
 	}
 
-	private computeIndoorActivityScore(): ActivityRanking {
-		// Indoor activities are always possible. Scores will just be 3 for each condition
+	private computeIndoorSightseeingScore(): ActivityRanking {
+		// Indoor sightseeing is always possible. Scores will just be 3 for each condition
 		// to ensure it is just average.
 		return {
 			isPossible: true,
 			// Score is 6, 3 for temperature and 3 for windspeed.
 			score: 6,
-			reason: 'Indoor activities are always possible',
+			reason: 'Indoor sightseeing is always possible',
 		}
 	}
 }

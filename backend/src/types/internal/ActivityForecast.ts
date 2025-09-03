@@ -9,8 +9,8 @@ export const ACTIVITY_PROPERTIES = [
 export const ACTIVITIES = [
 	'ski',
 	'surf',
-	'indoorActivities',
-	'outdoorActivities',
+	'indoorSightseeing',
+	'outdoorSightseeing',
 ] as const;
 
 export interface ActivityForecast {
