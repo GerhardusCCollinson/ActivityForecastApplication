@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      - NODE_ENV=development
+    ports:
+      - "4000:4000"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+    environment:
+      - NODE_ENV=production
+      - VITE_GRAPHQL_HTTP=http://backend:4000
+    depends_on:
+      - backend
+    ports:
+      - "4001:4001"
+    restart: unless-stopped
+
+
