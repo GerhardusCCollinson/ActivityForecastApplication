@@ -62,12 +62,13 @@ graph TD
 - DX & deploy: Dockerfiles for frontend/backend and Compose files for local all‑in‑one and backend‑only dev (Apollo Explorer). Frontend runs on 4001, backend on 4000.
 
 ## Running Locally with Docker
-- Full stack:
-  docker compose up --build
-  Frontend: http://localhost:4001
-  Backend (Apollo): http://localhost:4000
-- Backend only (dev):
-  docker compose -f docker-compose-dev.yml up --build
+- Running without apollo explorer:
+    `docker compose up --build`
+- Running with apollo explorer:
+    `docker compose -f docker-compose-dev.yml up --build`
+
+Frontend: http://localhost:4001
+Backend (Apollo): http://localhost:4000
 
 ## Omissions & Trade‑offs
 - Minimal UI. Emphasis is on clean data flow, types, and simple styling.
