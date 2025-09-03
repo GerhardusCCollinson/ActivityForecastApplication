@@ -1,5 +1,5 @@
 import { ApolloServer } from '@apollo/server';
-import { typeDefs } from './gql_typedefs';
+import { typeDefs } from './gqlTypedefs';
 import { resolvers } from './resolvers';
 import { startStandaloneServer } from '@apollo/server/standalone';
 
