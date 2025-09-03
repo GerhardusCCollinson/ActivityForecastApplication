@@ -38,7 +38,10 @@ export function ForecastDisplay(props: { coords?: { latitude: number, longitude:
 
           return (
             <div className="forecast-card" key={iso}>
-              <div className="forecast-date">{new Date(iso).toLocaleDateString()}</div>
+              <div className="forecast-header">
+                <span className="weather-emoji" aria-hidden="true">{daily.weatherCode[idx]}</span>
+                <div className="forecast-date">{new Date(iso).toLocaleDateString()}</div>
+              </div>
               <div className="forecast-row"><span>Temp:</span> <strong>{daily.temperature[idx]}{units.temperature}</strong></div>
               <div className="forecast-row"><span>Wind:</span> <strong>{daily.windSpeedMax[idx]}{units.windSpeedMax}</strong></div>
               <div className="forecast-row"><span>Precip:</span> <strong>{daily.precipitation[idx]}{units.precipitation}</strong></div>
@@ -57,6 +60,24 @@ export function ForecastDisplay(props: { coords?: { latitude: number, longitude:
                   )
                 })}
               </div>
+
+              <details className="forecast-details">
+                <summary>More details</summary>
+                <div className="details-grid">
+                  <div className="detail-row"><span>Rain</span><strong>{daily.rain[idx]}{units.rain}</strong></div>
+                  <div className="detail-row"><span>Showers</span><strong>{daily.showers[idx]}{units.showers}</strong></div>
+                  <div className="detail-row"><span>Snowfall</span><strong>{daily.snowfall[idx]}{units.snowfall}</strong></div>
+                  <div className="detail-row"><span>Precip. prob</span><strong>{daily.precipitationProbability[idx]}{units.precipitationProbability}</strong></div>
+                  <div className="detail-row"><span>Sunshine</span><strong>{daily.sunshineDuration[idx]}{units.sunshineDuration}</strong></div>
+                  <div className="detail-row"><span>Daylight</span><strong>{daily.daylightDuration[idx]}{units.daylightDuration}</strong></div>
+                  {daily.waveHeightMax[idx] != null && (
+                    <div className="detail-row"><span>Wave height</span><strong>{daily.waveHeightMax[idx]}{units.waveHeightMax}</strong></div>
+                  )}
+                  {daily.wavePeriodMax[idx] != null && (
+                    <div className="detail-row"><span>Wave period</span><strong>{daily.wavePeriodMax[idx]}{units.wavePeriodMax}</strong></div>
+                  )}
+                </div>
+              </details>
             </div>
           )
         })}

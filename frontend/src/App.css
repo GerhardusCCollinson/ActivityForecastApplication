@@ -114,6 +114,8 @@ body {
   border-radius: var(--radius-1);
   padding: var(--space-2);
 }
+.forecast-header { display: flex; align-items: center; gap: var(--space-2); }
+.weather-emoji { font-size: 28px; line-height: 1; }
 .forecast-date { font-weight: 600; }
 .forecast-row { display: flex; justify-content: space-between; color: #334155; }
 .forecast-activities { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-2); margin-top: var(--space-2); }
@@ -126,6 +128,11 @@ body {
 .score-ok { background: #fef9c3; color: #854d0e; }
 .score-bad { background: #fee2e2; color: #7f1d1d; }
 .score-na { background: #e2e8f0; color: #475569; }
+
+.forecast-details { margin-top: var(--space-2); }
+.forecast-details summary { cursor: pointer; color: #334155; }
+.details-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-2); margin-top: var(--space-2); }
+.detail-row { display: flex; justify-content: space-between; }
 
 .city-results-button {
   display: grid;
