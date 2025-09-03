@@ -32,8 +32,7 @@ body {
 
 /* Layout */
 .app-container {
-  max-width: 720px;
-  margin: 0 auto;
+  max-width: 400px;
   padding: var(--space-4);
   text-align: left;
 }
@@ -46,7 +45,6 @@ body {
 /* Search bar */
 .searchbar {
   display: grid;
-  grid-template-columns: 1fr auto;
   gap: var(--space-2);
 }
 
@@ -111,7 +109,7 @@ body {
 }
 .city-results-button:hover { border-color: var(--border-strong); }
 
-.city-title { font-weight: 600; }
+.city-title { font-weight: 600; display: flex; align-items: center; gap: var(--space-1); }
 .city-cc { color: var(--text-weak); }
 .city-sub { color: #334155; }
 .city-meta { color: var(--text-weak); font-size: 12px; }

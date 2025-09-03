@@ -32,7 +32,7 @@ export function CitiesResultsContainer(props: {
             onClick={() => onSelectCity?.(city)}
           >
             <div className="city-title">
-                <span><img src={`https://flagsapi.com/${city.countryCode}/flat/64.png`} /></span>{city.name}
+                <span><img src={`https://flagsapi.com/${city.countryCode}/flat/32.png`} /></span>{city.name}
                 <span className="city-cc">({city.countryCode})</span>
             </div>
             <div className="city-sub">{city.country} · lat {city.latitude.toFixed(3)}, lon {city.longitude.toFixed(3)}</div>
