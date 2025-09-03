@@ -17,6 +17,7 @@ export interface ActivityForecast {
 	daily: DailyValues;
 	dailyUnits: DailyUnits;
 	isCoastal: boolean;
+	elevation: number;
 }
 
 export type ActivityRankings = {

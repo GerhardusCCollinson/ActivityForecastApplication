@@ -1,8 +1,41 @@
-import type { ActivityRanking, ActivityRankings, MARINE_PROPERTIES, MarineForecast, WEATHER_PROPERTIES, WeatherForecast } from "../types";
+import type { ActivityForecast, ActivityRanking, ActivityRankings, MARINE_PROPERTIES, MarineForecast, WEATHER_PROPERTIES, WeatherForecast } from "../types";
+import { MarineForecastService } from "./MarineForecastService";
+import { WeatherForecastService } from "./WeatherForecastService";
 
 export class ActivityForecastService {
-	constructor() {}
+	private weatherForecastService: WeatherForecastService;
+	private marineForecastService: MarineForecastService;
 
+	constructor(
+		weatherForecastService = new WeatherForecastService(),
+		marineForecastService = new MarineForecastService(),
+	) {
+		this.weatherForecastService = weatherForecastService;
+		this.marineForecastService = marineForecastService;
+	}
+	
+	async getDailyForecast(forecastArgs: ActivityForecastArgs): Promise<ActivityForecast> {
+		const forecastData = await this.getRequiredForecastData(forecastArgs);
+		
+		const dailyRankings = this.computeDailyRankings(
+			forecastData.weatherForecast,
+			forecastData.marineForecast
+		);
+
+		return {
+			elevation: forecastData.weatherForecast.elevation,
+			dailyUnits: {
+				...forecastData.marineForecast.dailyUnits,
+				...forecastData.weatherForecast.dailyUnits,
+			},
+			daily: {
+				...forecastData.marineForecast.daily,
+				...forecastData.weatherForecast.daily,
+				activityRankings: dailyRankings,
+			},
+			isCoastal: forecastData.marineForecast.isCoastal,
+		}
+	}
 
 	computeDailyRankings(
 		weatherForecast: WeatherForecast,
@@ -10,6 +43,19 @@ export class ActivityForecastService {
 	): ActivityRankings[] {
 		// return dailyForecast.time.map();
 		return []
+	}
+
+	private async getRequiredForecastData (forecastArgs: ActivityForecastArgs): Promise<ForecastRequiredData> {
+		const forecasts = await Promise.all([
+			this.marineForecastService.getDailyForecast(forecastArgs),
+			this.weatherForecastService.getDailyForecast(forecastArgs),
+		]);
+
+
+		return {
+			marineForecast: forecasts[0],
+			weatherForecast: forecasts[1],
+		}
 	}
 
 	private computeActivityScore(
@@ -128,4 +174,12 @@ type RelevantConditions = {
 	isCoastal: boolean;
 };
 
+interface ForecastRequiredData {
+	weatherForecast: WeatherForecast;
+	marineForecast: MarineForecast;
+}
 
+interface ActivityForecastArgs {
+	latitude: number
+	longitude: number
+}
