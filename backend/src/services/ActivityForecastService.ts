@@ -1,4 +1,10 @@
-import type { ActivityForecast, ActivityRanking, ActivityRankings, MARINE_PROPERTIES, MarineForecast, WEATHER_PROPERTIES, WeatherForecast } from "../types";
+import type {
+	ActivityForecast,
+	ActivityRanking,
+	ActivityRankings,
+	MarineForecast,
+	WeatherForecast
+} from "../types";
 import { MarineForecastService } from "./MarineForecastService";
 import { WeatherForecastService } from "./WeatherForecastService";
 
