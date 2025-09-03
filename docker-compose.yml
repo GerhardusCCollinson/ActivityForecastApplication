@@ -1,24 +1,25 @@
-version: "3.9"
 services:
   backend:
     build:
       context: ./backend
-    ports:
-      - "4000:4000"
     environment:
       - NODE_ENV=production
+    ports:
+      - "4000:4000"
     restart: unless-stopped
 
   frontend:
     build:
       context: ./frontend
-    ports:
-      - "4001:4001"
+      args:
+        VITE_GRAPHQL_HTTP: https://activityforecastapi.gerharduscronje.co.za
     environment:
       - NODE_ENV=production
       - VITE_GRAPHQL_HTTP=https://activityforecastapi.gerharduscronje.co.za
     depends_on:
       - backend
+    ports:
+      - "4001:4001"
     restart: unless-stopped
 
 
