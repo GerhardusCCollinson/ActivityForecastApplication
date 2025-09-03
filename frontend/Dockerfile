@@ -12,7 +12,6 @@ WORKDIR /app
 COPY --from=build /app /app
 EXPOSE 4001
 ENV PORT=4001
-ENV VITE_GRAPHQL_HTTP=http://localhost:4000
+ENV NODE_ENV=production
+ENV VITE_GRAPHQL_HTTP=https://activityforecastapi.gerharduscronje.co.za
 CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "4001"]
-
-

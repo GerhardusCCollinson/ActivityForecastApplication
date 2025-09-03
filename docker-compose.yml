@@ -16,7 +16,7 @@ services:
       - "4001:4001"
     environment:
       - NODE_ENV=production
-      - VITE_GRAPHQL_HTTP=http://backend:4000
+      - VITE_GRAPHQL_HTTP=https://activityforecastapi.gerharduscronje.co.za
     depends_on:
       - backend
     restart: unless-stopped
