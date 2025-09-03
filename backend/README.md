@@ -19,9 +19,3 @@ Apollo Server exposes two queries backed by Open‑Meteo data:
 - npm run build – bundle TypeScript
 - npm run start – build then run Node server on port 4000
 - npm test – unit tests for services
-
-## Docker
-Built/run via root Compose; exposes port 4000:
-  docker compose up --build
-Dev backend only (Apollo Explorer):
-  docker compose -f ../docker-compose-dev.yml up --build

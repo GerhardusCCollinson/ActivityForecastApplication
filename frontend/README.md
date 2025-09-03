@@ -15,9 +15,3 @@ React app built with Vite. Provides city search and a 7‑day activity forecast.
 
 ## Environment
 - VITE_GRAPHQL_HTTP – GraphQL endpoint (defaults to http://localhost:4000 in Docker runtime).
-
-## Docker
-Build and run via project root Compose:
-  docker compose up --build
-Or dev compose (frontend included for convenience):
-  docker compose -f ../docker-compose-dev.yml up --build
