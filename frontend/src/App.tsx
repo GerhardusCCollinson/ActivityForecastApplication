@@ -1,9 +1,11 @@
 import './App.css'
+import { CitySearchContainer } from './components/CitySearchContainer'
 
 function App() {
   return (
-    <div>
-      <h1>City search demo</h1>
+    <div style={{ maxWidth: 720, margin: '0 auto', padding: 16 }}>
+      <h1>City search</h1>
+      <CitySearchContainer />
     </div>
   )
 }
