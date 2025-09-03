@@ -1,4 +1,4 @@
-import { REQUIRED_WEATHER_FIELDS, WEATHER_PROPERTIES, type CityDetails } from "../types";
+import { WEATHER_PROPERTIES, type CityDetails } from "../types";
 import { CitiesService } from "./CitiesSerivce";
 import { WeatherForecastService } from "./WeatherForecastService";
 
@@ -18,6 +18,7 @@ describe('WeatherForecastService', () => {
 
 		expect(res.daily).toBeDefined();
 		expect(res.dailyUnits).toBeDefined();
+		expect(res.elevation).toBeDefined();
 
 		for(let i = 0; i < WEATHER_PROPERTIES.length; i++) {
 			const dailyKey = WEATHER_PROPERTIES[i] as keyof typeof res.daily;

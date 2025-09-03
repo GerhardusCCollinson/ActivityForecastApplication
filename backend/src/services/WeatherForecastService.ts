@@ -1,14 +1,11 @@
-import { REQUIRED_WEATHER_FIELDS, WEATHER_PROPERTIES, type WeatherServiceResponse, type WeatherForecast, type ActivityRanking, type ActivityRankings, MARINE_PROPERTIES, type MarineForecast } from '../types';
+import { REQUIRED_WEATHER_FIELDS, type WeatherServiceResponse, type WeatherForecast } from '../types';
 import { interpretWeatherCode } from '../utils';
-import { MarineForecastService } from './MarineForecastService';
 
 export class WeatherForecastService {
 	private requiredWeatherFields: string
-	private marineForecastService: MarineForecastService
 
 	constructor(){
 		this.requiredWeatherFields = REQUIRED_WEATHER_FIELDS.join(',');
-		this.marineForecastService = new MarineForecastService();
 	}
 
 	async getDailyForecast(forecastArgs: WeatherForecastArgs): Promise<WeatherForecast> {
@@ -30,6 +27,7 @@ export class WeatherForecastService {
 		const {
 			daily,
 			daily_units: dailyUnits,
+			elevation,
 		} = weather;
 
 		return {
@@ -58,6 +56,7 @@ export class WeatherForecastService {
 				time: dailyUnits.time,
 				daylightDuration: dailyUnits.daylight_duration
 			},
+			elevation,
 		}
 	}
 

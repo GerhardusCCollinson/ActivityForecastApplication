@@ -13,6 +13,7 @@ export const WEATHER_PROPERTIES = [
 export interface WeatherForecast {
 	daily: DailyValues;
 	dailyUnits: DailyUnits;
+	elevation: number;
 }
 
 type DailyValues = {
