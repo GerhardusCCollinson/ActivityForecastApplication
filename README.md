@@ -74,5 +74,21 @@ graph TD
 - No server side caching; all data originates from Open‑Meteo.
 - Limited error/edge‑case UX; production would add retries, offline states, and analytics.
 
-How AI assisted you in the process
-<add notes here>
+## How AI assisted in the process
+
+### Planning
+I used google's built in search AI to look up ideal conditions for skiing and surfing.
+
+### Backend
+I didn't use much AI in the backend build. I used cursor to write a single function that converts weather codes into appropriate emojis.
+
+I valued building a greater understanding of what the backend portion did over using AI to produce it faster. This let me build a solid foundation, because, like I will get to later, this made it really easy to build the frontend using mostly AI.
+
+### Frontend
+Having built a solid backend foundation allowed me to very easily use AI via cursor to put together most of the frontend based on a neatly structured backend API.
+
+### Documentation
+I used Cursor to write the first draft of all the documentation before editing it myself afterwards.
+
+### CI
+I used AI to put together the dockerfiles and docker compose files based on the package.json files
