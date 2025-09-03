@@ -10,44 +10,21 @@ export const WEATHER_PROPERTIES = [
 	'windSpeedMax',
 ] as const;
 
-export const ACTIVITIES = [
-	'ski',
-	'surf',
-	'indoorActivities',
-	'outdoorActivities',
-] as const;
-
 export interface WeatherForecast {
-	daily: DailyWeatherValues;
-	dailyUnits: DailyWeatherUnits;
-	elevation: number;
-	generationtimeMs: number;
-	longitude: number;
-	latitude: number;
-	timezone: string;
-	timezoneAbbreviation: string;
-	utcOffsetSeconds: number;
+	daily: DailyValues;
+	dailyUnits: DailyUnits;
 }
 
-type DailyWeatherValues = {
+type DailyValues = {
 	[X in typeof WEATHER_PROPERTIES[number]]: number[];
 } & {
 	time: string[];
 	weatherCode: string[];
-	activityRankings: ActivityRankings[];
 }
 
-type DailyWeatherUnits = {
+type DailyUnits = {
 	[X in typeof WEATHER_PROPERTIES[number]]: string;
 } & {
 	time: string;
 }
 
-export type ActivityRankings = {
-	[X in typeof ACTIVITIES[number]]: ActivityRanking;
-}
-
-export type ActivityRanking = {
-	score: number;
-	isPossible: boolean;
-}
