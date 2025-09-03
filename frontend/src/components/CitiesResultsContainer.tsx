@@ -11,7 +11,7 @@ export function CitiesResultsContainer(props: {
   const { query, hasSearched, loading, error, results, onSelectCity } = props
 
   if (!hasSearched) {
-    return <div>Type at least 2 characters to search</div>
+    return <div>Search for a city to get started</div>
   }
   if (loading) {
     return <div>Searching “{query}”…</div>
