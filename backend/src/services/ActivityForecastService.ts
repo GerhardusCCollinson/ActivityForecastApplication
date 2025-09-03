@@ -143,7 +143,6 @@ export class ActivityForecastService {
 	private computeSurfScore(conditions: RelevantConditions): ActivityRanking {
 		const {
 			rain,
-			elevation,
 			temperature,
 			windSpeedMax,
 			isCoastal,
