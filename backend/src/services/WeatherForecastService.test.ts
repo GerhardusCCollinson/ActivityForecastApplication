@@ -1,4 +1,4 @@
-import { REQUIRED_WEATHER_FIELDS, type CityDetails } from "../types";
+import { REQUIRED_WEATHER_FIELDS, WEATHER_PROPERTIES, type CityDetails } from "../types";
 import { CitiesService } from "./CitiesSerivce";
 import { WeatherForecastService } from "./WeatherForecastService";
 
@@ -16,11 +16,14 @@ describe('WeatherForecastService', () => {
 		const { longitude, latitude } = city;
 		const res = await weatherForecastService.getDailyForecast({longitude, latitude});
 
-		expect(res.latitude).toBeDefined();
-		for(let i = 0; i < REQUIRED_WEATHER_FIELDS.length; i++) {
-			const key = REQUIRED_WEATHER_FIELDS[i] as keyof typeof res.daily;
-			expect(res.daily[key]).toBeDefined();
-			expect(res.daily_units[key]).toBeDefined();
+		expect(res.daily).toBeDefined();
+		expect(res.dailyUnits).toBeDefined();
+
+		for(let i = 0; i < WEATHER_PROPERTIES.length; i++) {
+			const dailyKey = WEATHER_PROPERTIES[i] as keyof typeof res.daily;
+			const unitsKey = WEATHER_PROPERTIES[i] as keyof typeof res.dailyUnits;
+			expect(res.daily[dailyKey]).toBeDefined();
+			expect(res.dailyUnits[unitsKey]).toBeDefined();
 		}
 	});
 });
