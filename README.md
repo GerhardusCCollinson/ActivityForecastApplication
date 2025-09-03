@@ -1,5 +1,9 @@
 # Activity Forecast App
 
+## Deployed URLs
+- Frontend: [https://activityforecast.gerharduscronje.co.za](https://activityforecast.gerharduscronje.co.za)
+- GraphQL API: [https://activityforecastapi.gerharduscronje.co.za](https://activityforecastapi.gerharduscronje.co.za)
+
 ## Overview
 This repository contains a minimal full‑stack application:
 - Backend: Node.js GraphQL API (Apollo Server) that aggregates Open‑Meteo services and exposes two queries: cityDetails and activityForecast.
