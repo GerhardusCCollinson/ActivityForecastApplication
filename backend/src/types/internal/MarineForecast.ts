@@ -10,7 +10,7 @@ export interface MarineForecast {
 }
 
 type DailyForecastValues = {
-  [X in typeof MARINE_PROPERTIES[number]]: number[]
+  [X in typeof MARINE_PROPERTIES[number]]: (number | null)[]
 } & {
   time: string[]
 }

@@ -30,7 +30,9 @@ export type ActivityRanking = {
 }
 
 type DailyValues = {
-  [X in typeof ACTIVITY_PROPERTIES[number]]: number[];
+  [X in typeof WEATHER_PROPERTIES[number]]: number[];
+} & {
+  [X in typeof MARINE_PROPERTIES[number]]: (number | null)[]
 } & {
 	weatherCode: string[];
 	time: string[];

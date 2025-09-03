@@ -27,5 +27,6 @@ describe('ActivityForecastService', () => {
 
 		expect(res.daily.activityRankings[0]).not.toBeNull();
 		expect(res.isCoastal).toEqual(true);
+		expect(res.daily.activityRankings[0]?.surf.score).not.toBeNull();
 	});
 });

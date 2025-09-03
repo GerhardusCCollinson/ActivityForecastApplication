@@ -20,9 +20,9 @@ export class ActivityForecastService {
 		this.marineForecastService = marineForecastService;
 	}
 	
-	async getDailyForecast(forecastArgs: ActivityForecastArgs): Promise<ActivityForecast> {
+	async getDailyForecast(forecastArgs: ForecastArgs): Promise<ActivityForecast> {
 		const forecastData = await this.getRequiredForecastData(forecastArgs);
-		
+
 		const dailyRankings = this.computeDailyRankings(
 			forecastData.weatherForecast,
 			forecastData.marineForecast
@@ -75,7 +75,9 @@ export class ActivityForecastService {
 		});;
 	}
 
-	private async getRequiredForecastData (forecastArgs: ActivityForecastArgs): Promise<ForecastRequiredData> {
+	private async getRequiredForecastData (
+		forecastArgs: ForecastArgs
+	): Promise<ForecastRequiredData> {
 		const forecasts = await Promise.all([
 			this.marineForecastService.getDailyForecast(forecastArgs),
 			this.weatherForecastService.getDailyForecast(forecastArgs),
@@ -161,9 +163,9 @@ export class ActivityForecastService {
 			// High wind speeds makes surfing unconfortable
 			windSpeedMax > 30 || 
 			// Can't surf if the waves are too small, unless you have a boat.
-			waveHeightMax < 1 ||
+			(waveHeightMax && waveHeightMax < 1) ||
 			// Can't surf if there is no space between the waves
-			wavePeriodMax < 6
+			(wavePeriodMax && wavePeriodMax < 6)
 		) {
 			// Perhaps in future we add a isPossble: false reason.
 			return {
@@ -292,7 +294,7 @@ interface ForecastRequiredData {
 	marineForecast: MarineForecast;
 }
 
-interface ActivityForecastArgs {
+interface ForecastArgs {
 	latitude: number
 	longitude: number
 }

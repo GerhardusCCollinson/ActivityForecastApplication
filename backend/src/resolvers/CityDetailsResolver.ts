@@ -1,13 +1,11 @@
 import { CitiesService } from "../services/CitiesSerivce";
 import type { CityDetails } from "../types";
 
-export async function cityDetailsResolver (_parent: unknown, args: getCitiesByNameArgs): Promise<CityDetails[]> {
+export async function cityDetailsResolver (_parent: unknown, args: GetCitiesByNameArgs): Promise<CityDetails[]> {
 	const citiesService = new CitiesService();
-
-	const cities = await citiesService.getCitiesByName(args.cityName);
-	return cities;
+	return await citiesService.getCitiesByName(args.cityName);
 }
 
-interface getCitiesByNameArgs {
+interface GetCitiesByNameArgs {
 	cityName: string;
 }
