@@ -19,7 +19,7 @@ export function CitySearchContainer() {
   }
 
   return (
-    <div style={{ display: 'grid', gap: 12 }}>
+    <div className="city-search">
       <SearchBarContainer onSearch={handleSearch} />
       <CitiesResultsContainer
         query={term}

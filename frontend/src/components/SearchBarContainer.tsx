@@ -6,23 +6,39 @@ export function SearchBarContainer(props: {
   const { onSearch } = props
   const [search, setSearch] = useState('')
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    onSearch(search.trim())
+  }
+
+  const isDisabled = search.trim().length < 2
+
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 8 }}>
+    <form className="searchbar" role="search" onSubmit={handleSubmit}>
+      <label htmlFor="city-search" className="sr-only">Search for a city</label>
       <input
+        id="city-search"
+        name="city"
+        className="searchbar-input"
         type="text"
         placeholder="Search for a city…"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        style={{ padding: 8, fontSize: 16 }}
+        autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="none"
+        spellCheck={false}
         autoFocus
       />
       <button
-        onClick={() => onSearch(search.trim())}
-        style={{ padding: '8px 12px' }}
+        type="submit"
+        className="btn btn-primary"
+        disabled={isDisabled}
+        aria-disabled={isDisabled}
       >
         Search
       </button>
-    </div>
+    </form>
   )
 }
 
