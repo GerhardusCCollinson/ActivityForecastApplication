@@ -33,7 +33,7 @@ export function ForecastDisplay(props: { coords?: { latitude: number, longitude:
 
             return (
                 <div className="forecast-card" key={iso}>
-                    <div className="forecast-date">{new Date(iso).toLocaleDateString()}</div>
+                    <div className="forecast-date">{daily.weatherCode[idx]}{new Date(iso).toLocaleDateString()}</div>
                     <div className="forecast-row"><span>Temp:</span> <strong>{daily.temperature[idx]}{units.temperature}</strong></div>
                     <div className="forecast-row"><span>Wind:</span> <strong>{daily.windSpeedMax[idx]}{units.windSpeedMax}</strong></div>
                     <div className="forecast-row"><span>Precip:</span> <strong>{daily.precipitation[idx]}{units.precipitation}</strong></div>

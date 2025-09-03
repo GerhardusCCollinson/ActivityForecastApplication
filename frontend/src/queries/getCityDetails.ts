@@ -13,7 +13,3 @@ export const cityDetailsQuery = gql`
     }
   }
 `
-
-export function createCityDetailsQueryVariables(cityName: string) {
-    return { variables: { cityName } }
-}
