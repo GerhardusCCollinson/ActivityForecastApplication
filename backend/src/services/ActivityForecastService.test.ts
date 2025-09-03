@@ -1,6 +1,6 @@
 import { ACTIVITY_PROPERTIES, type CityDetails } from "../types";
-import { ActivityForecastService } from "./ActivityForecastService";
-import { CitiesService } from "./CitiesSerivce";
+import { ActivityForecastService } from "./activityForecastService";
+import { CitiesService } from "./citiesSerivce";
 
 describe('ActivityForecastService', () => {
 	const citiesService = new CitiesService();

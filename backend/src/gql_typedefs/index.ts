@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request'
 
-import { CityDetails } from "./CityDetails";
-import { ActivityForecast } from './ActivityForecast';
+import { CityDetails } from "./cityDetails";
+import { ActivityForecast } from './activityForecast';
 
 export const typeDefs = gql`
 	${CityDetails}

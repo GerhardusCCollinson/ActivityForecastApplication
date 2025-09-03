@@ -1,4 +1,4 @@
-import { ActivityForecastService } from "../services/ActivityForecastService";
+import { ActivityForecastService } from "../services/activityForecastService";
 import type { ActivityForecast } from "../types";
 
 export async function activityForecastResolver (

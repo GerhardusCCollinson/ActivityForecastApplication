@@ -1,6 +1,6 @@
 import { MARINE_PROPERTIES, type CityDetails } from "../types";
-import { CitiesService } from "./CitiesSerivce";
-import { MarineForecastService } from "./MarineForecastService";
+import { CitiesService } from "./citiesSerivce";
+import { MarineForecastService } from "./marineForecastService";
 
 describe('MarineForecastService', () => {
 	const citiesService = new CitiesService();

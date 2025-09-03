@@ -1,5 +1,5 @@
-import { activityForecastResolver } from "./ActivityForecastResolver";
-import { cityDetailsResolver } from "./CityDetailsResolver";
+import { activityForecastResolver } from "./activityForecastResolver";
+import { cityDetailsResolver } from "./cityDetailsResolver";
 
 export const resolvers = {
 	Query: {
