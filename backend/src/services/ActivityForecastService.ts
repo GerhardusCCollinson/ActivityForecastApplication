@@ -94,23 +94,28 @@ export class ActivityForecastService {
 		const { rain, temperature, windSpeedMax, isCoastal } = conditions;
 
 		// Check if skiing is possible:
-		if(
-			// Can't ski if its not cold enough for snow.
-			temperature > -1 || 
-			// -21 celcius is too uncomfortably cold to ski.
-			temperature < -21 ||
-			// Can't ski in wind speeds greater than 60 kmph
-			windSpeedMax >= 60 ||
-			// You can't really ski if there is too much rain
-			rain > 15 ||
-			// If the city is located at the coast it is unlikely skiing is available
-			isCoastal
-			
-		) {
-			return {
-				score: 0,
-				isPossible: false,
-			}
+
+		const impossibleScore = { isPossible: false, score: 0 };
+		// Can't ski if its not cold enough for snow.
+		if( temperature > -1) {
+			return { ...impossibleScore, reason: `Temperature too high for snow at ${temperature}°C`, }
+		}
+
+		// -21 celcius is too uncomfortably cold to ski.
+		if (temperature < -21) {
+			return { ...impossibleScore, reason: `Temperature too low for skiing at ${temperature}°C` };
+		}
+		// Can't ski in wind speeds greater than 60 kmph
+		if (windSpeedMax >= 60) {
+			return { ...impossibleScore, reason: `Wind speed too high for skiing at ${windSpeedMax} km/h` };
+		}
+		// You can't really ski if there is too much rain
+		if (rain > 15) {
+			return { ...impossibleScore, reason: `Too much rain for skiing: ${rain} mm` };
+		}
+		// If the city is located at the coast it is unlikely skiing is available
+		if (isCoastal) {
+			return { ...impossibleScore, reason: `Location is coastal; skiing unlikely` };
 		}
 
 		// Assign a score to skiing based on temperature and wind speed:
@@ -139,7 +144,7 @@ export class ActivityForecastService {
 			score += windRating;
 		}
 
-		return { score, isPossible: true }
+		return { score, isPossible: true, reason: 'Conditions suitable for skiing' }
 	}
 
 	private computeSurfScore(conditions: RelevantConditions): ActivityRanking {
@@ -153,25 +158,30 @@ export class ActivityForecastService {
 		} = conditions;
 
 		// Check if surfing is possible
-		if(
-			// Can't surf if it is too cold (This is more subjective than the others)
-			temperature < 5 ||
-			// Can't surf if area is not coastal
-			!isCoastal ||
-			// Can't surf if it rains too much
-			rain > 15 ||
-			// High wind speeds makes surfing unconfortable
-			windSpeedMax > 30 || 
-			// Can't surf if the waves are too small, unless you have a boat.
-			(waveHeightMax && waveHeightMax < 1) ||
-			// Can't surf if there is no space between the waves
-			(wavePeriodMax && wavePeriodMax < 6)
-		) {
-			// Perhaps in future we add a isPossble: false reason.
-			return {
-				score: 0,
-				isPossible: false,
-			}
+		const impossibleScore = { isPossible: false, score: 0 };
+		// Can't surf if it is too cold (This is more subjective than the others)
+		if (temperature < 5) {
+			return { ...impossibleScore, reason: `Too cold to surf at ${temperature}°C` };
+		}
+		// Can't surf if area is not coastal
+		if (!isCoastal) {
+			return { ...impossibleScore, reason: 'Location is not coastal; cannot surf' };
+		}
+		// Can't surf if it rains too much
+		if (rain > 15) {
+			return { ...impossibleScore, reason: `Too much rain for surfing: ${rain} mm` };
+		}
+		// High wind speeds makes surfing unconfortable
+		if (windSpeedMax > 30) {
+			return { ...impossibleScore, reason: `Wind speed too high for surfing at ${windSpeedMax} km/h` };
+		}
+		// Can't surf if the waves are too small, unless you have a boat.
+		if (waveHeightMax && waveHeightMax < 1) {
+			return { ...impossibleScore, reason: `Wave height too small for surfing: ${waveHeightMax} m` };
+		}
+		// Can't surf if there is no space between the waves
+		if (wavePeriodMax && wavePeriodMax < 6) {
+			return { ...impossibleScore, reason: `Wave period too short for surfing: ${wavePeriodMax} s` };
 		}
 
 		// Assign a score to skiing based on temperature and wind speed:
@@ -198,6 +208,7 @@ export class ActivityForecastService {
 		return {
 			isPossible: true,
 			score,
+			reason: 'Conditions suitable for surfing',
 		}
 	}
 
@@ -211,16 +222,22 @@ export class ActivityForecastService {
 		} = conditions;
 
 		// Check if outdoor sightseeing is possible
-		if(
-			// If there is too much rain, outdoor sighseeing is impossible
-			rain > 10 ||
-			// If it is too hot out, outdoor sightseeing is too unconfortable
-			temperature > 40 ||
-			// If there is too much wind, outdoor sightseeing is uncomfortable
-			windSpeedMax > 40 ||
-			// If the skies aren't clear we probably want to avoid outside sightseeing
-			(weatherCode !== '☀️' && weatherCode !== '🌤️' && weatherCode !== '⛅')
-		) { return { score: 0, isPossible: false, } }
+		// If there is too much rain, outdoor sighseeing is impossible
+		if(rain > 10) {
+			return { score: 0, isPossible: false, reason: `Too much rain for outdoor sightseeing: ${rain} mm` }
+		}
+		// If it is too hot out, outdoor sightseeing is too unconfortable
+		if(temperature > 40) {
+			return { score: 0, isPossible: false, reason: `Too hot for outdoor sightseeing at ${temperature}°C` }
+		}
+		// If there is too much wind, outdoor sightseeing is uncomfortable
+		if(windSpeedMax > 40) {
+			return { score: 0, isPossible: false, reason: `Too windy for outdoor sightseeing at ${windSpeedMax} km/h` }
+		}
+		// If the skies aren't clear we probably want to avoid outside sightseeing
+		if(weatherCode !== '☀️' && weatherCode !== '🌤️' && weatherCode !== '⛅') {
+			return { score: 0, isPossible: false, reason: `Skies not clear (${weatherCode}); avoid outdoor sightseeing` }
+		}
 		
 		// Assign a score to outdoor activities based on temp and wind speed
 		let score = 0;
@@ -265,6 +282,7 @@ export class ActivityForecastService {
 		return {
 			isPossible: true,
 			score,
+			reason: 'Conditions suitable for outdoor activities',
 		}
 	}
 
@@ -275,6 +293,7 @@ export class ActivityForecastService {
 			isPossible: true,
 			// Score is 6, 3 for temperature and 3 for windspeed.
 			score: 6,
+			reason: 'Indoor activities are always possible',
 		}
 	}
 }

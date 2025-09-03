@@ -27,6 +27,7 @@ export type ActivityRankings = {
 export type ActivityRanking = {
 	score: number;
 	isPossible: boolean;
+	reason: string;
 }
 
 type DailyValues = {

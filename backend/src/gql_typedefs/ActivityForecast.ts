@@ -9,6 +9,7 @@ export const ActivityForecast = gql`
 	type ActivityRanking {
 		score: Float
 		isPossible: Boolean
+		reason: String
 	}
 
 	type ActivitiesRanking {
