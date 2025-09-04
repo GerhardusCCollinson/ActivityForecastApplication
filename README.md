@@ -70,9 +70,11 @@ graph TD
 `docker compose -f docker-compose-dev.yml up --build`
 
 ## Omissions & Trade‑offs
-- Minimal UI. Emphasis is on clean data flow, types, and simple styling.
-- No server side caching; all data originates from Open‑Meteo.
-- Limited error/edge‑case UX; production would add retries, offline states, and analytics.
+- No rate limiting: If someone spams requests we will go over open meteo free tier.
+- Low test coverage: Only tested unpredictable paths with local integration tests.
+- No server side caching; all data originates from Open‑Meteo every time.
+- Limited error/edge‑case handling to save dev time, this would need to be adressed first.
+- Minimal UI: Emphasis is on clean data flow and types.
 
 ## How AI assisted in the process
 
