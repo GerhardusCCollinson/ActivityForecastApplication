@@ -65,6 +65,11 @@ graph TD
 - Styling: Single CSS file with design tokens and utility classes for a tidy baseline; easily movable to CSS modules or a design system later.
 - DX & deploy: Dockerfiles for frontend/backend and Compose files for local all‑in‑one and backend‑only dev (Apollo Explorer). Frontend runs on 4001, backend on 4000.
 
+### Deployment
+
+I just stuck this onto my old laptop that is always on and connected through a Cloudflare tunnel and ran it.
+I then expose the correct port and point it to my hostname in the Cloudflare dashboard to create DNS records for me for the new subdomain.
+
 ## Running Locally with Docker
 
 `docker compose -f docker-compose-dev.yml up --build`
