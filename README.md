@@ -80,6 +80,10 @@ I then expose the correct port and point it to my hostname in the Cloudflare das
 - No server side caching; all data originates from Open‑Meteo every time.
 - Limited error/edge‑case handling to save dev time, this would need to be adressed first.
 - Minimal UI: Emphasis is on clean data flow and types.
+- Functionally, if I had more time, I would spend some of it refining the forecast algorithm. For instance, currently
+we are using the max temperature the max wind speed for the entire day, however, it would be more accurate if we used the hourly
+values to check the weather during viable hours for activites instead of using averages for the entire day. This approach is
+more involved, but refines the results to be more accurate. I would also want to look for more of these improvements.
 
 ## How AI assisted in the process
 
