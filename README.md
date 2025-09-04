@@ -93,7 +93,7 @@ I used google's built in search AI to look up ideal conditions for skiing and su
 ### Backend
 I didn't use much AI in the backend build. I used cursor to write a single function that converts weather codes into appropriate emojis.
 
-I valued building a greater understanding of what the backend portion did over using AI to produce it faster. This let me build a solid foundation, because, like I will get to later, this made it really easy to build the frontend using mostly AI.
+I valued building a greater understanding of what the backend portion did over using AI to produce it faster. This let me build a solid foundation, which made building the frontend using mostly AI simpler.
 
 ### Frontend
 Having built a solid backend foundation allowed me to very easily use AI via cursor to put together most of the frontend based on a neatly structured backend API.
