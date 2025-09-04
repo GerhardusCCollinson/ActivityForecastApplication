@@ -99,3 +99,6 @@ I used Cursor to write the first draft of all the documentation before editing i
 
 ### CI
 I used AI to put together the dockerfiles and docker compose files based on the package.json files
+
+## Extra
+- Personal github: [https://github.com/GerhardusC](https://activityforecast.gerharduscronje.co.za)
