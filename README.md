@@ -15,7 +15,7 @@ This repository contains a minimal full‑stack application:
 
 - Frontend searches cities: Apollo Client calls `cityDetails(cityName)` → resolver proxies to Open‑Meteo Geocoding and returns `CityDetails[]`.
 - User selects a city: coordinates sent to `activityForecast(latitude, longitude)`.
-- The activity forecast service then uses the longitude and latitude to retrieve both the weather forecast and the marine forecast at the same time (for surfing and determining if we are in a coastal city).
+- The activity forecast service then uses the longitude and latitude to retrieve both the weather forecast and the marine forecast at the same time (marine forecast is for surfing and determining if we are in a coastal city).
 - Once retrieved, the returned data is transformed into a cohesive response containing both marine and weather data.
 - Activity service computes daily activity rankings (ski/surf/indoor/outdoor) and merges units + values into a single payload.
 - GraphQL returns the combined forecast → frontend renders the 7‑day view.
